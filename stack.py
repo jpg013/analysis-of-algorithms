@@ -1,4 +1,4 @@
-from singly_linked_list import SinglyLinkedList, Node
+from singly_linked_list import SinglyLinkedList
 
 class Stack:
     """Stack data structure implementation using linked list"""
@@ -21,7 +21,7 @@ class Stack:
         if self.top >= self.max_size:
             raise Exception('Stack is full')
 
-        self.llist.add(Node(val))
+        self.llist.add(val)
         self.top += 1
 
     def pop(self):
@@ -31,4 +31,4 @@ class Stack:
             raise Exception('Stack is empty')
         
         self.top -= 1
-        return self.llist.remove().val
+        return self.llist.remove()

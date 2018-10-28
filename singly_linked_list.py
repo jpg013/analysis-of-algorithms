@@ -3,8 +3,8 @@
 class Node:
     """Node class contains a val attribute and pointer to next node in list"""
     
-    def __init__(self, val):
-        self.val = val
+    def __init__(self, data):
+        self.data = data
         self.next = None # Initially the node points to nothing
 
 class SinglyLinkedList:
@@ -13,34 +13,33 @@ class SinglyLinkedList:
     def __init__(self):
         self.head = None # initially the head points to None
 
-    def add(self, node):
+    def add(self, data):
         """Add node to head of list"""
+        new_node = Node(data)
+        
         if self.head is None:
-            self.head = node
+            self.head = new_node
             return
 
-        node.next = self.head
-        self.head = node
+        new_node.next = self.head
+        self.head = new_node
 
     def remove(self):
         """Remove head of the list"""
         if self.head is None:
-            raise Exception('cannot call remove_head on empty list')
+            raise Exception('cannot call remove on empty list')
 
         tmp = self.head
         self.head = tmp.next
         
-        return tmp
-
-    def get_node_at_position(self):
-        return None
+        return tmp.data
 
     def remove_tail(self):
         """Find and return the tail node of the linked list"""
+        if self.head is None:
+            raise Exception('cannot call remove_tail on empty list')
+        
         tmp = self.head
-
-        if tmp is None:
-            return tmp
 
         # Check if head is tail
         if self.is_tail_node(tmp):
@@ -51,8 +50,8 @@ class SinglyLinkedList:
             tail = tmp.next
 
             if self.is_tail_node(tmp.next):
-                tmp.next = None
-                return tail
+                tmp.next = None # Remove reference to tail
+                return tail.data
             
             tmp = tmp.next
 

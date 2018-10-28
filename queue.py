@@ -1,4 +1,4 @@
-from singly_linked_list import SinglyLinkedList, Node
+from singly_linked_list import SinglyLinkedList
 
 class Queue:
     """Queue data structure implementation using linked list"""
@@ -20,7 +20,7 @@ class Queue:
         if self.top >= self.max_size:
             raise Exception('Queue is full')
 
-        self.llist.add(Node(val))
+        self.llist.add(val)
         self.top += 1
 
     def dequeue(self):
@@ -30,4 +30,4 @@ class Queue:
             raise Exception('Queue is empty')
         
         self.top -= 1
-        return self.llist.remove_tail().val
+        return self.llist.remove_tail()
